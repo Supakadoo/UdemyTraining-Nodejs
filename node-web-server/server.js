@@ -9,12 +9,12 @@ var app = express();
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
-app.use((req, res, next)=> {
+app.use((req, res, next) => {
     var now = new Date().toString();
     var log = `${now}: ${req.method} ${req.path}`;
 
     console.log(log);
-    fs.appendFile('server.log', log + '\n', (err)=> {
+    fs.appendFile('server.log', log + '\n', (err) => {
         if (err) {
             console.log('Unable to append to server.log');
         }
@@ -28,12 +28,12 @@ app.use((req, res, next)=> {
 
 app.use(express.static(__dirname + '/public'));
 
-hbs.registerHelper('getCurrentYear', ()=> {
+hbs.registerHelper('getCurrentYear', () => {
     return new Date().getFullYear();
 });
 
 
-hbs.registerHelper('screamIt', (text)=> {
+hbs.registerHelper('screamIt', (text) => {
     return text.toUpperCase();
 });
 
